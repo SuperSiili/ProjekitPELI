@@ -1,6 +1,4 @@
-## Muistiinpanoja
-
-## Smuggling simuun featureita:
+## TO DO:
 - [ ] Saldo näkyviin kokoaikaisesti
 - [ ] Prosentit tuotteisiin
 - [ ] Sijainti
