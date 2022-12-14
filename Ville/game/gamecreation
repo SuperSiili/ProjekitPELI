@@ -1,0 +1,42 @@
+// connecting leaflet and leaflet stuff and deleting div id start creating the real game platform
+function createGamePlat() {
+
+    // clearing start up elements
+    document.querySelector('div').remove();
+    document.querySelector('dialog').remove();
+    //--------------------------
+
+    //funktion for divs
+    function createDiv(id) {
+        const main = document.querySelector('main')
+        const div = main.appendChild(document.createElement('div'))
+        div.setAttribute('id', id)
+    }
+    // creating fresh div elements to main element
+    createDiv('game')
+    createDiv('sidebar')
+    // adding attributes to created divs
+    document.getElementById('game').appendChild(document.createElement('div')).setAttribute('id', 'map')
+    document.getElementById('sidebar').innerText = 'Thö Shop'
+
+    //creating fresh dialog
+    const main = document.querySelector('main')
+    const dialog = main.appendChild(document.createElement('dialog'))
+    dialog.setAttribute('id', 'popup')
+
+
+//Setting leaflet
+    const map = L.map('map').setView([59.734, 21.797], 5)
+
+// making center map
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+//making marker
+    //const marker = L.marker([60.3219, 24.9441]).addTo(map);
+    //const Toimii = 'toimii';
+
+    //marker.bindPopup("<b>Helsinki Vantaa</b><br><button id='button' onclick='console.log(Toimii)'>Click to Fly</button>");
+
+}

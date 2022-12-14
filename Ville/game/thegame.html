@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smuggling simulator</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+          integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+          crossorigin=""/>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+    <script src="thegame.js" defer></script>
+
+
+</head>
+<body onload="createMarkers()">
+<div class="container">
+<header>
+    <h1>Smuggling simulator</h1>
+</header>
+<main>
+    <div id="game">
+        <div id="map"></div>
+    </div>
+        <div id="sidebar">
+            <h2>Kauppa</h2>
+        </div>
+    <dialog id="popup"></dialog>
+    <span><button id="hide-button">&gt;&gt;</button></span>
+    </main>
+    <footer>
+        <p>2022</p>
+        <p>Mikael Koivisto, Ville Laurikainen, Joona Loukkola, Henri Lyyjynen</p>
+    </footer>
+</div>
+</body>
+</html>
