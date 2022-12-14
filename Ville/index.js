@@ -153,12 +153,12 @@ function login(loginText, action = closeStartModal) {
 
 //function to play tutorial
 function playTutorial() {
-    location.replace('/smuggling_sim/Ville/Tutorial/tutorial.html?_ijt=2ndqj6kf8liq1g0n0soci913b8&_ij_reload=RELOAD_ON_SAVE')
+    location.replace('./Tutorial/tutorial.html')
 }
 
 //functio to the Game
 function toTheGame() {
-    location.replace('/smuggling_sim/Ville/game/thegame.html?_ijt=2ndqj6kf8liq1g0n0soci913b8&_ij_reload=RELOAD_ON_SAVE')
+    location.replace('./game/thegame.html')
 }
 
 // pretutorial function creation
@@ -166,22 +166,22 @@ function preTutorial(action = playTutorial, action2 = toTheGame) {
 
 
     const text = document.createElement('h1');
-    text.innerHTML = 'DO YOU WANT TO PLAY THE TUTORIAL?'
+    text.innerHTML = 'DO YOU WANT TO START THE GAME?'
 
     const form = document.createElement('form');
-    const button1 = form.appendChild(document.createElement('button'));
+    //const button1 = form.appendChild(document.createElement('button'));
     const button2 = form.appendChild(document.createElement('button'));
     //yes button
-    button1.setAttribute('id', 'tutorial');
-    button1.innerText = 'Yes, ofcourse!';
-    button1.onclick = action;
+    //button1.setAttribute('id', 'tutorial');
+    //button1.innerText = 'Yes, ofcourse!';
+    //button1.onclick = action;
     //no button
     button2.setAttribute('id', 'notutorial');
-    button2.innerText = 'Heeeeell naa man!';
+    button2.innerText = 'Heeeeell yeah man!';
     button2.onclick = action2;
 
     popup.appendChild(text);
-    popup.appendChild(button1);
+    //popup.appendChild(button1);
     popup.appendChild(button2);
     popup.showModal();
 

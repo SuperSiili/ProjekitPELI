@@ -39,13 +39,29 @@ h1 {
 
 main {
     display: flex;
-    border: 2px solid black;
     background-color: #edffff;
+    border: 2px solid black;
+}
+
+#start {
+    margin: auto;
+    width: 100%;
+}
+
+#start > button {
+    width: 94%;
+    margin: 1rem;
+    box-sizing: content-box;
+    font-size: 2rem;
 }
 
 #startPic {
-    background-image: url('/Ville/kuvat/brickwall.jpg');
-    width: 54rem;
+    background-image: url('../kuvat/brickwall.jpg');
+    max-width: 80%;
+    max-height: 50%;
+
+    margin: auto;
+    display: block;
 }
 
 /*div {
@@ -54,19 +70,27 @@ main {
 
 #map {
     height: 75vh;
+    border: 2px solid black;
 }
 
 #game {
     flex: 4;
-    border-right: 2px solid black;
 }
 
 #sidebar {
     flex: 1;
     margin: 1rem;
+    overflow-y: scroll;
+    top: 0;
+    bottom: 0;
+    max-height: 70vh;
+    box-sizing: border-box;
 }
 
 footer {
-    position: absolute;
     bottom: 0;
+}
+
+#losetext {
+    text-align: center;
 }

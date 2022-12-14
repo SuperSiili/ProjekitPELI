@@ -12,7 +12,7 @@ class Database:
             port=3306,
             database='flight_game',
             user='root',
-            password='lanbase123',
+            password='admin',
             autocommit=True
         )
 

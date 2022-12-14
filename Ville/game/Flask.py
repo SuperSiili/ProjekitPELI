@@ -219,14 +219,14 @@ def sell(product):
     global saldo
     risk = random.randint(1, 100)
     if product == 'Roheiini':
-        if risk <= 40 * kiinnikerroin:
+        if risk <= 0 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
             return [{"answer": "yes"}]
         else:
             saldo += 800 * arvokerroin
             return [{"answer": "no"}],  update(), print(saldo)
 
     elif product == 'PBK':
-        if risk <= 20 * kiinnikerroin:
+        if risk <= 100 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
             return [{"answer": "yes"}]
         else:
             saldo += 200 *arvokerroin
