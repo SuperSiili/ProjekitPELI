@@ -1,0 +1,13 @@
+## Muistiinpanoja
+
+## Smuggling simuun featureita:
+- [ ] Saldo näkyviin kokoaikaisesti
+- [ ] Prosentit tuotteisiin
+- [ ] Sijainti
+- [ ] Korjaa kauppa
+- [ ] Leaderboard
+- [ ] Help-menu
+- [ ] Tuotteet SQL
+- [ ] Kauppa SQL
+- [ ] Korjaa klikkaus-bugi
+- [ ] Sääpalvelu kiinnijäämisprosenttiin
