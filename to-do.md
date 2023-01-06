@@ -1,6 +1,6 @@
 ## TO DO:
 - [X] Saldo näkyviin kokoaikaisesti
-- [ ] Prosentit tuotteisiin
+- [X] Prosentit tuotteisiin
 - [ ] Sijainti
 - [ ] Korjaa kauppa
 - [ ] Leaderboard

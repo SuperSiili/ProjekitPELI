@@ -45,8 +45,12 @@ function markerEvent() {
       targetMarker.innerText[2] + targetMarker.innerText[3];
   const p = targetMarker.appendChild(document.createElement('p'));
   const p2 = targetMarker.appendChild(document.createElement('p'));
+  const p3 = targetMarker.appendChild(document.createElement('p'));
+  const p4 = targetMarker.appendChild(document.createElement('p'));
   p.innerText = 'Landed pretty much safely.';
   p2.innerText = 'Now time to sell some stuff you got with ya';
+  p3.innerText = 'Roheiini: Earn 800€, 40% chance to get caught'
+  p4.innerText = 'PBK: Earn 200€, 20% chance to get caught'
 
   //function run order
   flight();
