@@ -1,5 +1,5 @@
 ## TO DO:
-- [ ] Saldo näkyviin kokoaikaisesti
+- [X] Saldo näkyviin kokoaikaisesti
 - [ ] Prosentit tuotteisiin
 - [ ] Sijainti
 - [ ] Korjaa kauppa

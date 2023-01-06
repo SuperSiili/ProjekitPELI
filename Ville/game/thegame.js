@@ -178,6 +178,7 @@ function Sell() {
     popup.showModal();
 
   }
+  updateBalance()
 
 }
 
@@ -225,8 +226,8 @@ function createMarkers() {
     } catch (e) {
       console.error(e.message);
     }
-  }
 
+  }
   getJson();
 }
 
@@ -301,6 +302,7 @@ function createShop(
 //joggers
 function shop1() {
   getJson();
+  updateBalance();
 
   async function fetchJson(url, options = {}) {
     try {
@@ -326,6 +328,7 @@ function shop1() {
         userPrompt();
       }
 
+
     } catch (e) {
       console.error(e.message);
     }
@@ -336,6 +339,7 @@ function shop1() {
 //packing
 function shop2() {
   getJson();
+  updateBalance();
 
   async function fetchJson(url, options = {}) {
     try {
@@ -373,6 +377,7 @@ function shop2() {
 //suitcase
 function shop3() {
   getJson();
+  updateBalance();
 
   async function fetchJson(url, options = {}) {
     try {
@@ -410,6 +415,7 @@ function shop3() {
 //Total quality
 function shop4() {
   getJson();
+  updateBalance();
 
   async function fetchJson(url, options = {}) {
     try {
@@ -447,6 +453,7 @@ function shop4() {
 //quality control
 function shop5() {
   getJson();
+  updateBalance();
 
   async function fetchJson(url, options = {}) {
     try {
@@ -475,9 +482,52 @@ function shop5() {
         userPrompt();
       }
 
+
     } catch (e) {
       console.error(e.message);
     }
   }
 
 }
+
+//update cash balance
+
+function updateBalance() {
+
+  async function fetchJson(url, options = {}) {
+    try {
+        const response = await fetch(url, options);
+        if (!response.ok) throw new Error('Invalid input');
+        return await response.json();
+    } catch (e) {
+        console.error(e.message);
+    }
+  }
+  async function getJson() {
+        try {
+            const results = await fetchJson('http://127.0.0.1:3000/results');
+            console.log(results)
+
+            const endBalance = results[0].Saldo
+            console.log(endBalance)
+
+        function updateB() {
+          if (endBalance === 'null') {
+            const h2Element = document.getElementById('totalmoney');
+            h2Element.innerText = 'Current balance: 0€';
+          }
+          else {
+            const h2Element = document.getElementById('totalmoney');
+            h2Element.innerText = 'Current balance: ' + endBalance + '€';
+          }
+        }
+
+        updateB();
+
+        } catch (e) {
+            console.error(e.message);
+        }
+  }
+  getJson();
+}
+
