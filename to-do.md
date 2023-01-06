@@ -2,10 +2,10 @@
 - [X] Saldo näkyviin kokoaikaisesti
 - [X] Prosentit tuotteisiin
 - [ ] Sijainti
-- [ ] Korjaa kauppa
+- [X] Korjaa kauppa
 - [ ] Leaderboard
 - [ ] Help-menu
 - [ ] Tuotteet SQL
 - [ ] Kauppa SQL
-- [ ] Korjaa klikkaus-bugi
+- [X] Korjaa klikkaus-bugi
 - [ ] Sääpalvelu kiinnijäämisprosenttiin

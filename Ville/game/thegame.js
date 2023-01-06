@@ -268,6 +268,7 @@ function createShop(
 
   const button1 = form.appendChild(document.createElement('button'));
   button1.setAttribute('id', 'button1');
+  button1.setAttribute('type', 'button');
   button1.onclick = action1;
   button1.innerText = 'Jogging Shoes 200€';
   const p1 = form.appendChild(document.createElement(
@@ -275,6 +276,7 @@ function createShop(
 
   const button2 = form.appendChild(document.createElement('button'));
   button2.setAttribute('id', 'button2');
+  button2.setAttribute('type', 'button');
   button2.onclick = action2;
   button2.innerText = 'Better Packing 500€';
   const p2 = form.appendChild(document.createElement(
@@ -282,6 +284,7 @@ function createShop(
 
   const button3 = form.appendChild(document.createElement('button'));
   button3.setAttribute('id', 'button3');
+  button3.setAttribute('type', 'button');
   button3.onclick = action3;
   button3.innerText = 'Suitcase 800€';
   const p3 = form.appendChild(document.createElement(
@@ -289,6 +292,7 @@ function createShop(
 
   const button4 = form.appendChild(document.createElement('button'));
   button4.setAttribute('id', 'button4');
+  button4.setAttribute('type', 'button');
   button4.onclick = action4;
   button4.innerText = 'Quality 400€';
   const p4 = form.appendChild(document.createElement(
@@ -296,6 +300,7 @@ function createShop(
 
   const button5 = form.appendChild(document.createElement('button'));
   button5.setAttribute('id', 'button5');
+  button5.setAttribute('type', 'button');
   button5.onclick = action5;
   button5.innerText = 'Overall Quality Control 600€';
   const p5 = form.appendChild(document.createElement(
@@ -306,7 +311,7 @@ function createShop(
 //joggers
 function shop1() {
   getJson();
-  updateBalance();
+
 
   async function fetchJson(url, options = {}) {
     try {
@@ -327,9 +332,11 @@ function shop1() {
       const answer = results[0].answer;
       console.log(answer);
 
-      if (answer === 'no') {
-        newButton('TUOTE OSTETTU');
-        userPrompt();
+      if (answer === 'yes') {
+        buttonSell();
+        updateBalance();
+      } else if (answer === 'no') {
+        buttonFail();
       }
 
 
@@ -343,7 +350,7 @@ function shop1() {
 //packing
 function shop2() {
   getJson();
-  updateBalance();
+
 
   async function fetchJson(url, options = {}) {
     try {
@@ -364,12 +371,14 @@ function shop2() {
       const answer = results[0].answer;
       console.log(answer);
 
-      if (answer === 'no') {
-        newButton('ENJOY YOUR NEW JOGGERS!');
-        userPrompt();
+      if (answer === 'yes') {
+        while (popup.firstElementChild) {
+          popup.firstElementChild.remove();
+        }
+        buttonSell();
+        updateBalance();
       } else if (answer === 'no') {
-        newButton('NOT ENOUGHT FYRGYLÄ TO BUY THIS PRODUCT');
-        userPrompt();
+        buttonFail();
       }
 
     } catch (e) {
@@ -381,7 +390,7 @@ function shop2() {
 //suitcase
 function shop3() {
   getJson();
-  updateBalance();
+
 
   async function fetchJson(url, options = {}) {
     try {
@@ -402,12 +411,14 @@ function shop3() {
       const answer = results[0].answer;
       console.log(answer);
 
-      if (answer === 'no') {
-        newButton('OH SUCH A FANCY SUITCASE YOU HAVE THERE');
-        userPrompt();
+      if (answer === 'yes') {
+        while (popup.firstElementChild) {
+          popup.firstElementChild.remove();
+        }
+        buttonSell();
+        updateBalance();
       } else if (answer === 'no') {
-        newButton('NOT ENOUGHT FYRGYLÄ TO BUY THIS PRODUCT');
-        userPrompt();
+        buttonFail();
       }
 
     } catch (e) {
@@ -419,7 +430,7 @@ function shop3() {
 //Total quality
 function shop4() {
   getJson();
-  updateBalance();
+
 
   async function fetchJson(url, options = {}) {
     try {
@@ -440,12 +451,14 @@ function shop4() {
       const answer = results[0].answer;
       console.log(answer);
 
-      if (answer === 'no') {
-        newButton('YOUR PRODUCT QUALITY IS OFF THE ROOF NOW');
-        userPrompt();
+      if (answer === 'yes') {
+        while (popup.firstElementChild) {
+          popup.firstElementChild.remove();
+        }
+        buttonSell();
+        updateBalance();
       } else if (answer === 'no') {
-        newButton('NOT ENOUGHT FYRGYLÄ TO BUY THIS PRODUCT');
-        userPrompt();
+        buttonFail();
       }
 
     } catch (e) {
@@ -457,7 +470,7 @@ function shop4() {
 //quality control
 function shop5() {
   getJson();
-  updateBalance();
+
 
   async function fetchJson(url, options = {}) {
     try {
@@ -478,12 +491,14 @@ function shop5() {
       const answer = results[0].answer;
       console.log(answer);
 
-      if (answer === 'Yes') {
-        newButton('YOUR PRODUCT MANUFACTORY QUALITY IS NOW IN-SANEEEE ');
-        userPrompt();
+      if (answer === 'yes') {
+        while (popup.firstElementChild) {
+          popup.firstElementChild.remove();
+        }
+        buttonSell();
+        updateBalance();
       } else if (answer === 'no') {
-        newButton('NOT ENOUGHT FYRGYLÄ TO BUY THIS PRODUCT');
-        userPrompt();
+        buttonFail();
       }
 
 
@@ -533,5 +548,44 @@ function updateBalance() {
         }
   }
   getJson();
+}
+
+// close buttons for shop
+function buttonSell(action = closeModal) {
+  const dialog = document.getElementById('popup');
+  //clear dialog
+  while (dialog.firstElementChild) {
+    dialog.firstElementChild.remove();
+  }
+  const popuptext = popup.appendChild(document.createElement('h1'));
+  popuptext.innerText = `Product bought`;
+
+  const form = document.createElement('form');
+  const button = form.appendChild(document.createElement('button'));
+  button.innerText = 'Next';
+  button.onclick = action;
+
+
+  popup.appendChild(button);
+  popup.showModal();
+}
+
+function buttonFail(action = closeModal) {
+  const dialog = document.getElementById('popup');
+  //clear dialog
+  while (dialog.firstElementChild) {
+    dialog.firstElementChild.remove();
+  }
+  const popuptext = popup.appendChild(document.createElement('h1'));
+  popuptext.innerText = `NOT ENOUGHT FYRGYLÄ TO BUY THIS PRODUCT`;
+
+  const form = document.createElement('form');
+  const button = form.appendChild(document.createElement('button'));
+  button.innerText = 'Next';
+  button.onclick = action;
+
+
+  popup.appendChild(button);
+  popup.showModal();
 }
 

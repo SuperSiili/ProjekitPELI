@@ -99,6 +99,7 @@ kiinnikerroin = 1
 arvokerroin = 1
 saldo = 0
 
+
 #shop route
 @app.route('/shop/<product>')
 def shop(product):
@@ -185,7 +186,18 @@ def update():
     kursori.execute(sql)
     return print('funds added')
 
-
+#reset player
+@app.route('/resetall')
+def resetall():
+    global kiinnikerroin
+    global arvokerroin
+    global saldo
+    global userName
+    kiinnikerroin = 1
+    arvokerroin = 1
+    saldo = 0
+    userName = 'empty'
+    return print('reseted', saldo)
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)

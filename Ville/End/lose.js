@@ -1,5 +1,7 @@
 'use strict'
 
+fetchResults()
+
 //uusien nappien luomiseksi popupin sisään
 function newButton(buttonText = 'OK', action = closeModal, bClass = 'ok') {
   const button = document.createElement('button');
@@ -65,8 +67,24 @@ function fetchResults() {
     }
     getJson()
 }
+function reset() {
+    getJson();
+    async function fetchJson(url, options = {}) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) throw new Error('Invalid input');
+            return await response.json();
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
 
-fetchResults()
+    async function getJson() {
+        try {
+            await fetchJson('http://127.0.0.1:3000/resetall');
 
-
-
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
+}
