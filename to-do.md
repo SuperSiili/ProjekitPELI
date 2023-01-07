@@ -3,7 +3,7 @@
 - [X] Prosentit tuotteisiin
 - [ ] Sijainti
 - [X] Korjaa kauppa
-- [ ] Leaderboard
+- [X] Leaderboard
 - [ ] Help-menu
 - [ ] Tuotteet SQL
 - [ ] Kauppa SQL
