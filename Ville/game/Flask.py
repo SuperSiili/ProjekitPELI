@@ -267,6 +267,27 @@ def resetall():
     userName = 'empty'
     return print('reseted', saldo)
 
+
+@app.route("/leaderboard")
+def leaderboard():
+    sql = f"SELECT screen_name, Saldo FROM game WHERE Saldo IS NOT NULL"
+    kursori = db.get_conn().cursor()
+    kursori.execute(sql)
+    lbtuple = kursori.fetchall()
+
+    lblist = []
+
+    for i in lbtuple:
+        lblist.append(list(i))
+
+    for i in lblist:
+        i[1] = float(i[1])
+
+    lblist.sort(reverse=True, key=lambda a: a[1])
+    print(lblist)
+    return lblist
+
+
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
 
