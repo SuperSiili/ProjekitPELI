@@ -228,20 +228,23 @@ def sell(product):
     risk = random.randint(1, 100)
     if product == 'Roheiini':
         if risk <= 0 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
-            return [{"answer": "yes"}]
+            earnings = 0
+            answer = "yes"
         else:
-            earnings1 = 800 * arvokerroin * multi
+            earnings = 800 * arvokerroin * multi
             saldo += 800 * arvokerroin * multi
-            return [{"answer": "no"}, {'saldo': earnings1}],  update(), print(saldo)
+            answer = "no"
+        return [{"answer": answer}, {'saldo': earnings}],  update(), print(saldo)
 
     elif product == 'PBK':
         if risk <= 100 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
-
-            return [{"answer": "yes"}]
+            earnings = 0
+            answer = "yes"
         else:
-            earnings2 = 200 * arvokerroin * multi
+            earnings = 200 * arvokerroin * multi
             saldo += 200 * arvokerroin * multi
-            return [{"answer": "no"}, {'earnings': earnings2}], update(), print(saldo)
+            answer = "no"
+        return [{"answer": answer}, {'saldo': earnings}],  update(), print(saldo)
 
 
 #updates saldo function

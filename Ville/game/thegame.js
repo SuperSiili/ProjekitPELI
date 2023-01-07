@@ -4,6 +4,8 @@ function closeModal() {
   popup.close();
 }
 
+let sellprice;
+
 //uusien nappien luomiseksi popupin sisään
 function newButton(buttonText = 'OK', action = closeModal, bClass = 'ok') {
   const button = document.createElement('button');
@@ -117,6 +119,7 @@ function markerEvent() {
         const answer = results[0].answer;
 
         console.log(answer);
+        sellprice = results[1].saldo
 
         if (answer === 'yes') {
           Lose();
@@ -175,9 +178,9 @@ function Sell() {
 
     const popuptext = popup.appendChild(document.createElement('h1'));
         if (product === 'Roheiini') {
-          popuptext.innerText = `Congratulations, you have sold Roheiini for 800€.`;
+          popuptext.innerText = `Congratulations, you have sold Roheiini for ${sellprice.toFixed(2)}€.`;
         } else if (product === 'PBK') {
-            popuptext.innerText = `Congratulations, you have sold PBK for 200€.`;
+            popuptext.innerText = `Congratulations, you have sold PBK for ${sellprice.toFixed(2)}€.`;
         }
 
         const form = document.createElement('form');
@@ -536,7 +539,7 @@ function updateBalance() {
             const results = await fetchJson('http://127.0.0.1:3000/results');
             console.log(results)
 
-            const endBalance = results[0].Saldo
+            let endBalance = results[0].Saldo
             console.log(endBalance)
 
         function updateB() {
@@ -546,7 +549,7 @@ function updateBalance() {
           }
           else {
             const h2Element = document.getElementById('totalmoney');
-            h2Element.innerText = 'Current balance: ' + endBalance + '€';
+            h2Element.innerText = 'Current balance: ' + parseFloat(endBalance).toFixed(2) + '€';
           }
         }
 
