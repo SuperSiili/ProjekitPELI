@@ -113,6 +113,7 @@ function markerEvent() {
         console.log(results);
 
         const answer = results[0].answer;
+
         console.log(answer);
 
         if (answer === 'yes') {
@@ -150,7 +151,7 @@ let product = 'empty';
 
 function Sell() {
 
-  //clear dialog, clear marker/*
+  //clear dialog, clear marker
   const targetMarker = document.querySelector('.leaflet-popup-content');
   while (targetMarker.firstElementChild) {
     targetMarker.firstElementChild.remove();
@@ -163,28 +164,31 @@ function Sell() {
   congratulations();
 
   function congratulations(text, action = closeModal) {
+
     const dialog = document.getElementById('popup');
     //clear dialog
     while (dialog.firstElementChild) {
       dialog.firstElementChild.remove();
     }
+
     const popuptext = popup.appendChild(document.createElement('h1'));
-    if (product === 'Roheiini') {
-      popuptext.innerText = 'Congratulations, you have sold Roheiini for 800€.';
-    } else if (product === 'PBK') {
-      popuptext.innerText = 'Congratulations, you have sold PBK for 200€.';
-    }
+        if (product === 'Roheiini') {
+          popuptext.innerText = `Congratulations, you have sold Roheiini for 800€.`;
+        } else if (product === 'PBK') {
+            popuptext.innerText = `Congratulations, you have sold PBK for 200€.`;
+        }
 
-    const form = document.createElement('form');
-    const button = form.appendChild(document.createElement('button'));
-    button.innerText = 'Next';
-    button.onclick = action;
+        const form = document.createElement('form');
+        const button = form.appendChild(document.createElement('button'));
+        button.innerText = 'Next';
+        button.onclick = action;
 
-    console.log(product);
-    popup.appendChild(button);
-    popup.showModal();
+        popup.appendChild(button);
+        popup.showModal();
+
 
   }
+
   updateBalance()
 
 }

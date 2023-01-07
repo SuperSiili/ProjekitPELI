@@ -53,7 +53,7 @@ def username(name):
          VALUES("{name}") '''
         kursori = db.get_conn().cursor()
         kursori.execute(sql)
-        return userName, print(userName)
+        return userName
 
 #Changes the players start location to finland
 @app.route('/reset/<username>')
@@ -86,7 +86,7 @@ def flightcode(icao):
     getlocation()
     weatherAPI(location)
     weathermult()
-    return oldicao, print(multi)
+    return oldicao
 
 #Fetch all large airports for mark creation
 @app.route('/airport/large')
@@ -190,7 +190,7 @@ def resetmult():
     global multi
     global resetmulti
     multi = multi/resetmulti
-    return multi, print(multi)
+    return multi
 
 def weathermult():
     global multi
@@ -204,7 +204,7 @@ def weathermult():
     else:
         multi = multi*0.8
         resetmulti = 0.8
-    return multi, resetmulti, print(multi)
+    return multi, resetmulti
 
 def getlocation():
     global location
@@ -216,7 +216,7 @@ def getlocation():
     cursor.execute(sql)
     city = cursor.fetchone()
     location = city[0]
-    return location, print(location)
+    return location
 
 
 
@@ -230,16 +230,18 @@ def sell(product):
         if risk <= 0 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
             return [{"answer": "yes"}]
         else:
-            saldo += 800 * arvokerroin
-            return [{"answer": "no"}],  update(), print(saldo)
+            earnings1 = 800 * arvokerroin * multi
+            saldo += 800 * arvokerroin * multi
+            return [{"answer": "no"}, {'saldo': earnings1}],  update(), print(saldo)
 
     elif product == 'PBK':
         if risk <= 100 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
 
             return [{"answer": "yes"}]
         else:
-            saldo += 200 *arvokerroin
-            return [{"answer": "no"}], update(), print(saldo)
+            earnings2 = 200 * arvokerroin * multi
+            saldo += 200 * arvokerroin * multi
+            return [{"answer": "no"}, {'earnings': earnings2}], update(), print(saldo)
 
 
 #updates saldo function
