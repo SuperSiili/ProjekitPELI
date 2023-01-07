@@ -52,6 +52,8 @@ function markerEvent() {
   p3.innerText = 'Roheiini: Earn 800€, 40% chance to get caught'
   p4.innerText = 'PBK: Earn 200€, 20% chance to get caught'
 
+  document.getElementById("currentlocation").innerText = "Current location: " + icao;
+
   //function run order
   flight();
   sellEvt();
