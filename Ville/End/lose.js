@@ -3,6 +3,8 @@
 fetchResults();
 leaderboard();
 
+let screenname;
+
 //uusien nappien luomiseksi popupin sisään
 function newButton(buttonText = 'OK', action = closeModal, bClass = 'ok') {
   const button = document.createElement('button');
@@ -60,6 +62,8 @@ function fetchResults() {
 
         popup.appendChild(button);
         popup.showModal();
+
+        screenname = results[0].screen_name
       }
 
       nappi();
@@ -109,11 +113,33 @@ async function leaderboard() {
     const leaderboard = await fetchJson(
         'http://127.0.0.1:3000/leaderboard');
     console.log(leaderboard);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
       console.log(leaderboard[i])
-      let player = document.createElement("p")
-      player.innerText = i + 1 + ". " + leaderboard[i][0] + "     " + leaderboard[i][1]
-      document.getElementById("leaderboard").appendChild(player)
+
+      let row = document.createElement("div")
+      let left = document.createElement("p")
+      let right = document.createElement("p")
+      let separator = document.createElement("span")
+
+      left.innerText = (i + 1) + ". " + leaderboard[i][0];
+      right.innerText = leaderboard[i][1] + "€";
+
+      left.classList.add("lb-left")
+      right.classList.add("lb-right")
+      separator.classList.add("separator")
+
+      row.appendChild(left)
+      row.appendChild(separator)
+      row.appendChild(right)
+
+      row.classList.add("lb-item")
+
+      // changing nickname color if current run is on the leaderboard:
+      if (screenname === leaderboard[i][0]) {
+        row.classList.add("current-run")
+      }
+
+      document.getElementById("leaderboard").appendChild(row)
     }
   } catch (e) {
     console.error(e.message);

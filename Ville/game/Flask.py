@@ -113,7 +113,7 @@ def balance(funds):
 #giving balance results in the end
 @app.route('/results')
 def results():
-    sql = f'''SELECT Saldo
+    sql = f'''SELECT Saldo, screen_name
     FROM game
     WHERE screen_name = "{userName}" '''
     cursor = db.get_conn().cursor(dictionary=True)
@@ -281,7 +281,7 @@ def leaderboard():
         lblist.append(list(i))
 
     for i in lblist:
-        i[1] = float(i[1])
+        i[1] = round(float(i[1]), 2)
 
     lblist.sort(reverse=True, key=lambda a: a[1])
     print(lblist)

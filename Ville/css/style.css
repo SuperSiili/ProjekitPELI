@@ -94,3 +94,42 @@ footer {
 #losetext {
     text-align: center;
 }
+
+#leaderboard {
+    width: 100%;
+    display: inline-block;
+    flex-shrink: 0;
+    border: 1px solid black;
+}
+
+#leaderboard p {
+    margin: 0;
+    font-size: larger;
+}
+
+#leaderboard h2 {
+    margin: 1rem;
+    text-align: center;
+}
+
+.lb-item {
+    display: flex;
+    padding: 0 1rem 1rem 1rem;
+}
+
+.lb-left {
+    width: fit-content;
+}
+
+.separator {
+    width: auto;
+    flex: 1;
+}
+
+.lb-right {
+    align-content: end;
+}
+
+.current-run {
+    color: red;
+}
