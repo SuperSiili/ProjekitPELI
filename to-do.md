@@ -8,4 +8,4 @@
 - [ ] Tuotteet SQL
 - [ ] Kauppa SQL
 - [X] Korjaa klikkaus-bugi
-- [ ] Sääpalvelu kiinnijäämisprosenttiin
+- [X] Sääpalvelu arvokertoimeen

@@ -1,4 +1,5 @@
 import random
+import requests
 import json
 from flask import Flask
 from Ville.game.database import Database
@@ -9,6 +10,29 @@ db = Database()
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+
+# Weather API ------------------------------------------------------
+temp = 'empty'
+
+def weatherAPI(location):
+    #programm
+    global temp
+    apikey = 'fb0e15b1ca7ed0a91fcd6d1a7c89b810'
+    search = location
+
+    #site https://openweathermap.org/api
+
+    request = f"https://api.openweathermap.org/data/2.5/weather?q={search}&appid={apikey}"
+    answer = requests.get(request).json()
+
+    #Temperature
+    tocelsius = 273.15
+    temperature = answer['main']['temp']
+    temp = round((temperature-tocelsius), 1)
+
+    return temp, print(temp)
+
+#-------------------------------------------------------------------
 
 userName = 'empty'
 
@@ -45,6 +69,7 @@ def reset(username):
 
 #changes the current ICAO to the one you fly to
 oldicao = 'EFHK'
+location = 'empty'
 
 @app.route('/fly/<icao>')
 def flightcode(icao):
@@ -57,9 +82,11 @@ def flightcode(icao):
     kursori = db.get_conn().cursor()
     kursori.execute(sql)
     oldicao = icao
-    return oldicao, print(userName)
-
-
+    resetmult()
+    getlocation()
+    weatherAPI(location)
+    weathermult()
+    return oldicao, print(multi)
 
 #Fetch all large airports for mark creation
 @app.route('/airport/large')
@@ -155,6 +182,42 @@ def update():
     kursori.execute(sql)
     return print('funds removed')
 
+#adding multiplier from weather
+multi = 1
+resetmulti = 1
+
+def resetmult():
+    global multi
+    global resetmulti
+    multi = multi/resetmulti
+    return multi, print(multi)
+
+def weathermult():
+    global multi
+    global resetmulti
+    if int(temp) > 0:
+        multi = multi*1.2
+        resetmulti = 1.2
+    elif int(temp) == 0:
+        multi = multi*1
+        resetmulti = 1
+    else:
+        multi = multi*0.8
+        resetmulti = 0.8
+    return multi, resetmulti, print(multi)
+
+def getlocation():
+    global location
+    sql = f'''SELECT municipality 
+        FROM airport 
+        WHERE gps_code = "{oldicao}"
+        ;'''
+    cursor = db.get_conn().cursor()
+    cursor.execute(sql)
+    city = cursor.fetchone()
+    location = city[0]
+    return location, print(location)
+
 
 
 
@@ -172,10 +235,13 @@ def sell(product):
 
     elif product == 'PBK':
         if risk <= 100 * kiinnikerroin: #VAIHDETTU ARVO TESTAUSTA VARTEN
+
             return [{"answer": "yes"}]
         else:
             saldo += 200 *arvokerroin
             return [{"answer": "no"}], update(), print(saldo)
+
+
 #updates saldo function
 def update():
     sql = f'''UPDATE game 

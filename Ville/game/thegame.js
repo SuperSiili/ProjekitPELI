@@ -56,10 +56,12 @@ function markerEvent() {
   flight();
   sellEvt();
 
+
 //flight code to next place
   function flight() {
     try {
       const updateIcao = fetch('http://127.0.0.1:3000/fly/' + icao);
+      console.log(updateIcao)
 
     } catch (e) {
       console.error(e.message);
@@ -126,6 +128,7 @@ function markerEvent() {
 
     getJson();
   }
+
 }
 
 function Lose() {
