@@ -1,8 +1,8 @@
 # Smuggling simulator
 
-![Login screen](kuva1)
-![Peli](kuva2)
-![Leaderboard](kuva3)
+![Login screen](kuva1.png)
+![Peli](kuva2.png)
+![Leaderboard](kuva3.png)
 
 ### Muutokset tunnilla esitettyyn versioon
 - peli toimii
