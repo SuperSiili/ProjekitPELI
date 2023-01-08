@@ -26,7 +26,7 @@ function closeModal() {
 }
 
 //fetching results from SQL
-function fetchResults() {
+async function fetchResults() {
 
   async function fetchJson(url, options = {}) {
     try {
